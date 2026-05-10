@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Floraguere - Versos de Tinta y Barlias</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --paper: #f5f3e7;
+    --green-soft: #cfd8c0;
+    --ink-purple: #4a1f3d;
+    --text-dark: #2b2b2b;
+}
+
+/* FONDO TIPO PAPEL + MANCHAS */
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(180,200,150,0.2), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(120,150,90,0.2), transparent 40%),
+        var(--paper);
+}
+
+/* ACCESIBILIDAD */
+
+.lang-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.lang-switch button {
+    background: var(--ink-purple);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* HERO ESTILO CARTEL */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 10%;
+    text-align: left;
+}
+
+.hero-text {
+    max-width: 700px;
+}
+
+/* "versos" */
+
+.hero-small {
+    font-size: 3rem;
+    color: var(--ink-purple);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* "de tinta y" */
+
+.hero-mid {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #555;
+}
+
+/* "barlias" */
+
+.hero-big {
+    font-family: 'Great Vibes', cursive;
+    font-size: 7rem;
+    color: var(--ink-purple);
+    line-height: 1;
+}
+
+/* SUBTÍTULO */
+
+.hero-subtitle {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* SECCIONES */
+
+section {
+    padding: 80px 15%;
+}
+
+/* ACORDEONES (NO CAMBIO FUNCIONALIDAD) */
+
+.accordion {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--ink-purple);
+    cursor: pointer;
+    padding: 20px 0;
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.accordion:after {
+    content: '+';
+    float: right;
+}
+
+.active:after {
+    content: '-';
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+/* CONTACTO */
+
+.contact-card {
+    border: 1px solid var(--ink-purple);
+    padding: 50px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.7);
+    text-align: center;
+}
+
+.btn-link {
+    display: inline-block;
+    background: var(--ink-purple);
+    color: white;
+    padding: 15px 40px;
+    margin: 15px 5px;
+    text-decoration: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="lang-switch">
+    <button onclick="setLang('es')">ES</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('de')">DE</button>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-text">
+
+```
+    <p class="hero-small" id="title1">versos</p>
+    <p class="hero-mid" id="title2">de tinta y</p>
+    <p class="hero-big" id="title3">barlias</p>
+
+    <p class="hero-subtitle" id="subtitle">
+        Poesía que florece
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- EXPOSICIÓN -->
+
+<section>
+    <h2 id="expo-title">Exposición</h2>
+    <p id="expo-desc">
+        Exposición de arte floral, realizada por prestigiosos artistas,
+        100% con flor y planta producida en Canarias.
+    </p>
+
+```
+<button class="accordion">Esculturas Florales 2026</button>
+<div class="panel"><p>Inspiradas en los versos de artistas canarios.</p></div>
+
+<button class="accordion">Artistas Florales</button>
+<div class="panel"><p>Artistas por confirmar</p></div>
+```
+
+</section>
+
+<!-- CONTACTO -->
+
+<section>
+    <div class="contact-card">
+        <h2 id="contact-title">Contacto</h2>
+        <a href="mailto:info@floraguere.com" class="btn-link">Email</a>
+    </div>
+</section>
+
+<script>
+
+/* ACORDEÓN */
+var acc = document.getElementsByClassName("accordion");
+
+for (var i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+    });
+}
+
+/* TRADUCCIONES */
+function setLang(lang) {
+
+    const content = {
+
+        es: {
+            t1: "versos",
+            t2: "de tinta y",
+            t3: "barlias",
+            subtitle: "Poesía que florece",
+            expo: "Exposición",
+            desc: "Exposición de arte floral realizada por prestigiosos artistas.",
+            contact: "Contacto"
+        },
+
+        en: {
+            t1: "verses",
+            t2: "of ink and",
+            t3: "petals",
+            subtitle: "Poetry that blooms",
+            expo: "Exhibition",
+            desc: "Floral art exhibition by renowned artists.",
+            contact: "Contact"
+        },
+
+        de: {
+            t1: "verse",
+            t2: "aus tinte und",
+            t3: "blüten",
+            subtitle: "Poesie, die blüht",
+            expo: "Ausstellung",
+            desc: "Blumenkunstausstellung von Künstlern.",
+            contact: "Kontakt"
+        }
+
+    };
+
+    document.getElementById("title1").innerText = content[lang].t1;
+    document.getElementById("title2").innerText = content[lang].t2;
+    document.getElementById("title3").innerText = content[lang].t3;
+    document.getElementById("subtitle").innerText = content[lang].subtitle;
+    document.getElementById("expo-title").innerText = content[lang].expo;
+    document.getElementById("expo-desc").innerText = content[lang].desc;
+    document.getElementById("contact-title").innerText = content[lang].contact;
+}
+
+</script>
+
+</body>
+</html>
